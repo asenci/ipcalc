@@ -1,5 +1,4 @@
-uipcalc
-=======
+# uipcalc #
 
 Universal (IPv4/IPv6) CIDR calculator
 
@@ -7,8 +6,8 @@ Source available at: http://bitbucket.org/asenci/ipcalc/
 
 Please report any issues at: http://bitbucket.org/asenci/ipcalc/issues/
 
-License:
---------
+
+### License: ###
 
 Licensed under MIT license.
 
