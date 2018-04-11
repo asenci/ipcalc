@@ -2,13 +2,13 @@
 
 CIDR calculator with IPv6 support using the "github.com/mikioh/ipaddr" package
 
-Source available at: http://bitbucket.org/asenci/ipcalc/
+Source available at https://bitbucket.org/asenci/ipcalc/ or https://github.com/asenci/ipcalc/
 
-Please report any issues at: http://bitbucket.org/asenci/ipcalc/issues/
+Please report any issues at: https://bitbucket.org/asenci/ipcalc/issues/
 
 
 ### License: ###
 
 Licensed under MIT license.
 
-See [LICENSE.txt](http://bitbucket.org/asenci/ipcalc/raw/master/LICENSE.txt) file for details.
+See [LICENSE.txt](https://bitbucket.org/asenci/ipcalc/raw/master/LICENSE.txt) file for details.
