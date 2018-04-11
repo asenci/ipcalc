@@ -1,6 +1,6 @@
 # ipcalc #
 
-CIDR calculator with IPv6 support
+CIDR calculator with IPv6 support using the "github.com/mikioh/ipaddr" package
 
 Source available at: http://bitbucket.org/asenci/ipcalc/
 
