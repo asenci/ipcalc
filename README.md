@@ -1,6 +1,6 @@
-# uipcalc #
+# ipcalc #
 
-Universal (IPv4/IPv6) CIDR calculator
+CIDR calculator with IPv6 support
 
 Source available at: http://bitbucket.org/asenci/ipcalc/
 
