@@ -18,7 +18,7 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Version: "0.1a",
+	Version: "0.1.0",
 	Use:   "ipcalc [flags] <prefix> [prefix...]",
 	Long: `ipcalc - IPv6-enabled CIDR calculator
 
