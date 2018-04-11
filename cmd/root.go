@@ -53,14 +53,12 @@ Default action is to show the prefixes details`,
 			fmt.Fprintf(sb, "  Last:     %s\n", Explode(p.Last()))
 
 			if verbose {
-				maskLen, _ := p.Mask.Size()
-
 				sb.WriteByte('\n')
-				fmt.Fprintf(sb, "  First:    %s\n", Bin(p.IP, maskLen))
+				fmt.Fprintf(sb, "  First:    %s\n", Bin(p.IP, p.Len()))
 				if ! bytes.Equal(ip, p.IP) {
-					fmt.Fprintf(sb, "  Input:    %s\n", Bin(ip, maskLen))
+					fmt.Fprintf(sb, "  Input:    %s\n", Bin(ip, p.Len()))
 				}
-				fmt.Fprintf(sb, "  Last:     %s\n", Bin(p.Last(), maskLen))
+				fmt.Fprintf(sb, "  Last:     %s\n", Bin(p.Last(), p.Len()))
 			}
 		}
 
