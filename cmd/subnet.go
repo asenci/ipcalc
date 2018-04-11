@@ -37,7 +37,7 @@ var subnetCmd = &cobra.Command{
 			sub = append(sub, sp.String())
 		}
 
-		fmt.Printf("Sub-networks: %s\n", strings.Join(sub, ", "))
+		fmt.Printf("Prefixes: %s\n", strings.Join(sub, ", "))
 		return nil
 	},
 }

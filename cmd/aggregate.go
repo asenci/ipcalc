@@ -31,7 +31,7 @@ var aggregateCmd = &cobra.Command{
 			agg = append(agg, p.String())
 		}
 
-		fmt.Printf("Aggregates: %s\n", strings.Join(agg, ", "))
+		fmt.Printf("Prefixes: %s\n", strings.Join(agg, ", "))
 		return nil
 	},
 }
