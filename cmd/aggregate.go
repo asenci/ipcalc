@@ -9,11 +9,11 @@ import (
 )
 
 var aggregateCmd = &cobra.Command{
-	Aliases: []string{"agg"},
-	Use:   "aggregate <prefix> [<prefix>...]",
-	Short: "Aggregate the specified prefixes",
+	Aliases:       []string{"agg"},
+	Use:           "aggregate <prefix> [<prefix>...]",
+	Short:         "Aggregate the specified prefixes",
 	SilenceErrors: true,
-	Args:  cobra.MinimumNArgs(1),
+	Args:          cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var ps []ipaddr.Prefix
 		var agg []string
@@ -31,7 +31,7 @@ var aggregateCmd = &cobra.Command{
 			agg = append(agg, p.String())
 		}
 
-		fmt.Printf("Prefixes: %s\n", strings.Join(agg, ", "))
+		fmt.Printf("> %s%s\n%s", Purple, strings.Join(agg, ", "), Reset)
 		return nil
 	},
 }

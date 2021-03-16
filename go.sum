@@ -1,3 +1,5 @@
+github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
+github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/mikioh/ipaddr v0.0.0-20180707143206-d9961065b564 h1:31EzafDxpf4Yk99gxBYrXueI5j9fS06cDR5kM+W3pig=
 github.com/mikioh/ipaddr v0.0.0-20180707143206-d9961065b564/go.mod h1:Ickgr2WtCLZ2MDGd4Gr0geeCH5HybhRJbonOgQpvSxc=
 github.com/spf13/cobra v0.0.3 h1:ZlrZ4XsMRm04Fr5pSFxBgfND2EBVa1nLpiy1stUsX/8=
