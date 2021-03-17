@@ -10,11 +10,11 @@ import (
 )
 
 var subnetCmd = &cobra.Command{
-	Aliases: []string{"sub"},
-	Use:   "subnet <prefix> <n>",
-	Short: "Split the specified prefix into \"n\" sub-networks",
+	Aliases:       []string{"sub"},
+	Use:           "subnet <prefix> <n>",
+	Short:         "Split the specified prefix into \"n\" sub-networks",
 	SilenceErrors: true,
-	Args:  cobra.ExactArgs(2),
+	Args:          cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var sub []string
 
@@ -29,15 +29,27 @@ var subnetCmd = &cobra.Command{
 		}
 
 		log := math.Log2(float64(n))
-		if n < 2 || log - float64(int(log)) != 0 {
+		if n < 2 || log-float64(int(log)) != 0 {
 			return fmt.Errorf("\"n\" must be a power of 2")
 		}
 
-		for _, sp := range p.Subnets(int(log)) {
-			sub = append(sub, sp.String())
+		if verbose {
+			for _, sp := range p.Subnets(int(log)) {
+				fmt.Printf("Prefixes: %s\n", sp.String())
+				_, p := ParseCIDR(sp.String())
+				fmt.Printf("  Addresses:  %d\n", p.NumNodes())
+				fmt.Printf("  Netmask:    %s\n", Explode(p.Mask))
+				fmt.Printf("  First:      %s\n", Explode(p.IP))
+				fmt.Printf("  Last:       %s\n", Explode(p.Last()))
+				fmt.Printf("\n")
+			}
+		} else {
+			for _, sp := range p.Subnets(int(log)) {
+				sub = append(sub, sp.String())
+			}
+			fmt.Printf("Prefixes: %s\n", strings.Join(sub, ", "))
 		}
 
-		fmt.Printf("Prefixes: %s\n", strings.Join(sub, ", "))
 		return nil
 	},
 }
