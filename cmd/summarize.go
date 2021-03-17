@@ -10,11 +10,11 @@ import (
 )
 
 var summarizeCmd = &cobra.Command{
-	Aliases: []string{"sum"},
-	Use:   "summarize <first address> <last address>",
-	Short: "Summarize the specified address range",
+	Aliases:       []string{"sum"},
+	Use:           "summarize <first address> <last address>",
+	Short:         "Summarize the specified address range",
 	SilenceErrors: true,
-	Args:  cobra.ExactArgs(2),
+	Args:          cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var sum []string
 
@@ -36,7 +36,7 @@ var summarizeCmd = &cobra.Command{
 			return fmt.Errorf("unable to summarize the specified address range")
 		}
 
-		fmt.Printf("Prefixes: %s\n", strings.Join(sum, ", "))
+		fmt.Printf("> %s%s%s\n", Purple, strings.Join(sum, ", "), Reset)
 		return nil
 	},
 }

@@ -10,11 +10,11 @@ import (
 )
 
 var subnetCmd = &cobra.Command{
-	Aliases: []string{"sub"},
-	Use:   "subnet <prefix> <n>",
-	Short: "Split the specified prefix into \"n\" sub-networks",
+	Aliases:       []string{"sub"},
+	Use:           "subnet <prefix> <n>",
+	Short:         "Split the specified prefix into \"n\" sub-networks",
 	SilenceErrors: true,
-	Args:  cobra.ExactArgs(2),
+	Args:          cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var sub []string
 
@@ -29,7 +29,7 @@ var subnetCmd = &cobra.Command{
 		}
 
 		log := math.Log2(float64(n))
-		if n < 2 || log - float64(int(log)) != 0 {
+		if n < 2 || log-float64(int(log)) != 0 {
 			return fmt.Errorf("\"n\" must be a power of 2")
 		}
 
@@ -37,7 +37,7 @@ var subnetCmd = &cobra.Command{
 			sub = append(sub, sp.String())
 		}
 
-		fmt.Printf("Prefixes: %s\n", strings.Join(sub, ", "))
+		fmt.Printf("> %s%s%s\n", Purple, strings.Join(sub, ", "), Reset)
 		return nil
 	},
 }

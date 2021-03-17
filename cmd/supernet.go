@@ -1,20 +1,18 @@
 package cmd
 
 import (
+	"fmt"
 
-"fmt"
-
-"github.com/mikioh/ipaddr"
-"github.com/spf13/cobra"
-
+	"github.com/mikioh/ipaddr"
+	"github.com/spf13/cobra"
 )
 
 var supernetCmd = &cobra.Command{
-	Aliases: []string{"sup"},
-	Use:   "supernet <prefix> [<prefix>...]",
-	Short: "Find the shortest common prefix for the specified prefixes",
+	Aliases:       []string{"sup"},
+	Use:           "supernet <prefix> [<prefix>...]",
+	Short:         "Find the shortest common prefix for the specified prefixes",
 	SilenceErrors: true,
-	Args:  cobra.MinimumNArgs(1),
+	Args:          cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var ps []ipaddr.Prefix
 
@@ -27,7 +25,7 @@ var supernetCmd = &cobra.Command{
 			ps = append(ps, *p)
 		}
 
-		fmt.Printf("Prefix: %s\n", ipaddr.Supernet(ps))
+		fmt.Printf("> %s%s%s\n", Purple, ipaddr.Supernet(ps), Reset)
 		return nil
 	},
 }

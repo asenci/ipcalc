@@ -13,18 +13,33 @@ import (
 )
 
 var (
+	Reset       = "\033[0m"
+	Background  = "\033[38;5;59m"
+	CurrentLine = "\033[38;5;60m"
+	Foreground  = "\033[38;5;231m"
+	Comment     = "\033[38;5;103m"
+	Cyan        = "\033[38;5;159m"
+	Green       = "\033[38;5;120m"
+	Orange      = "\033[38;5;222m"
+	Pink        = "\033[38;5;212m"
+	Purple      = "\033[38;5;183m"
+	Red         = "\033[38;5;210m"
+	Yellow      = "\033[38;5;229m"
+)
+
+var (
 	compressIPv6 bool
-	verbose bool
+	verbose      bool
 )
 
 var rootCmd = &cobra.Command{
 	Version: "0.1.0",
-	Use:   "ipcalc [flags] <prefix> [prefix...]",
+	Use:     "ipcalc [flags] <prefix> [prefix...]",
 	Long: `ipcalc - IPv6-enabled CIDR calculator
 
 Default action is to show the prefixes details`,
 	DisableFlagsInUseLine: true,
-	SilenceErrors: true,
+	SilenceErrors:         true,
 	//SilenceUsage:  true,
 	Args: cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,22 +55,22 @@ Default action is to show the prefixes details`,
 				sb.WriteByte('\n')
 			}
 
-			fmt.Fprintf(sb, "Prefix: %s\n", p)
-			fmt.Fprintf(sb, "  Number of addresses: %d\n", p.NumNodes())
+			fmt.Fprintf(sb, "> %s%s\n\n%s", Purple, p, Reset)
+			fmt.Fprintf(sb, "  Number of addresses: %s%d%s\n", Pink, p.NumNodes(), Reset)
 			sb.WriteByte('\n')
-			fmt.Fprintf(sb, "  Netmask:  %s\n", Explode(p.Mask))
-			fmt.Fprintf(sb, "  Wildcard: %s\n", Explode(p.Hostmask()))
+			fmt.Fprintf(sb, "  Netmask:  %s%s%s\n", Yellow, Explode(p.Mask), Reset)
+			fmt.Fprintf(sb, "  Wildcard: %s%s%s\n", Yellow, Explode(p.Hostmask()), Reset)
 			sb.WriteByte('\n')
-			fmt.Fprintf(sb, "  First:    %s\n", Explode(p.IP))
-			if ! bytes.Equal(ip, p.IP) {
+			fmt.Fprintf(sb, "  First:    %s%s%s\n", Green, Explode(p.IP), Reset)
+			if !bytes.Equal(ip, p.IP) {
 				fmt.Fprintf(sb, "  Input:    %s\n", Explode(ip))
 			}
-			fmt.Fprintf(sb, "  Last:     %s\n", Explode(p.Last()))
+			fmt.Fprintf(sb, "  Last:     %s%s%s\n", Green, Explode(p.Last()), Reset)
 
 			if verbose {
 				sb.WriteByte('\n')
 				fmt.Fprintf(sb, "  First:    %s\n", Bin(p.IP, p.Len()))
-				if ! bytes.Equal(ip, p.IP) {
+				if !bytes.Equal(ip, p.IP) {
 					fmt.Fprintf(sb, "  Input:    %s\n", Bin(ip, p.Len()))
 				}
 				fmt.Fprintf(sb, "  Last:     %s\n", Bin(p.Last(), p.Len()))
@@ -121,7 +136,7 @@ func Bin(ip []byte, split int) string {
 func ParseCIDR(s string) (net.IP, *ipaddr.Prefix) {
 	cidrMaskRegex := regexp.MustCompile(`/\d+$`)
 
-	if ! cidrMaskRegex.MatchString(s) {
+	if !cidrMaskRegex.MatchString(s) {
 		i := strings.Index(s, "/")
 		if i < 0 {
 			return nil, nil
@@ -169,4 +184,3 @@ func Explode(ip []byte) string {
 
 	return sb.String()
 }
-

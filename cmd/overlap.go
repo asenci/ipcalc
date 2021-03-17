@@ -1,18 +1,18 @@
 package cmd
 
 import (
-"fmt"
+	"fmt"
 
-"github.com/spf13/cobra"
+	"github.com/spf13/cobra"
 )
 
 var overlapCmd = &cobra.Command{
-	Aliases: []string{"olp"},
-	Use:   "overlap <prefix> <overlapping>",
-	Short: "Check if the specified prefix overlaps with the main prefix",
+	Aliases:       []string{"olp"},
+	Use:           "overlap <prefix> <overlapping>",
+	Short:         "Check if the specified prefix overlaps with the main prefix",
 	SilenceErrors: true,
-	SilenceUsage: true,
-	Args:  cobra.ExactArgs(2),
+	SilenceUsage:  true,
+	Args:          cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		_, p := ParseCIDR(args[0])
 		if p == nil {
